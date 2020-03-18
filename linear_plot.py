@@ -101,7 +101,9 @@ class plotLinearCombinations:
         return resultant
 
     def _randomWeights(self):
-        self.weights = np.random.randint(-6, 6,
+        #self.weights = np.random.randint(-55, 55,
+                                        # size=len(self.weights))*np.random.rand()
+        self.weights = np.random.randint(-1.5*np.log(self.count), 1.5*np.log(self.count),
                                          size=len(self.weights))*np.random.rand()
 
     def _plot(self):
@@ -109,13 +111,15 @@ class plotLinearCombinations:
         plt.title(
             f'Linear Combinations Visualization\nCount : "{max(self.count, 1)}"')
         origin = self.origin
-        xCords = np.array([vectors[0] for vectors in self.resultant])
-        yCords = np.array([vectors[1] for vectors in self.resultant])
+        #xCords = np.array([vectors[0] for vectors in self.resultant])
+        #yCords = np.array([vectors[1] for vectors in self.resultant])
         xCord = np.array([vectors[0] for vectors in self.vectors])
         yCord = np.array([vectors[1] for vectors in self.vectors])
         colorArray = ['r', 'b', 'g', 'y', 'grey',
                       'orange', 'silver', 'purple', 'pink']
         if not self.pointOnly:
+            xCords = np.array([vectors[0] for vectors in self.resultant])
+            yCords = np.array([vectors[1] for vectors in self.resultant])
             plt.quiver(*origin, xCords, yCords, angles='xy',
                        scale_units='xy', color=Gcolor, scale=1)
             plt.xlim(min(min(xCords)+self.origin[0], min(xCord)+self.origin[0], self.origin[0])-1,
@@ -125,6 +129,8 @@ class plotLinearCombinations:
                      max(max(yCords)+self.origin[1], max(yCord)+self.origin[1], self.origin[1])+1)
             #plt.ylim(-40, 40)
         else:
+            xCords = np.array([vectors[0]+self.origin[0] for vectors in self.resultant])
+            yCords = np.array([vectors[1]+self.origin[1] for vectors in self.resultant])
             plt.plot(xCords, yCords, 'D', color='white', markerfacecolor='white',
                      markeredgecolor='black', markeredgewidth=1)  # temp
         plt.quiver(*origin, xCord, yCord, color=colorArray,
@@ -165,7 +171,7 @@ class plotLinearCombinations:
 
 try:
     p = plotLinearCombinations(vectors=[
-        [6, 3], [-3, 5]], weights=[2, 3], count=90000000, origin=[-5, 10], pointOnly=False, printInfo=False, dynamic=False)
+        [6, 3], [-3, 5], [-4,-6], [7, -9]], weights=[2, 3, 1.9, 3.6], count=100, origin=[0, 0], pointOnly=False, printInfo=False, dynamic=False)
     p.findPlotlinearcomb()
     # p._plot()
 except Exception as e:
