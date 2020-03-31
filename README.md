@@ -1,3 +1,5 @@
+##Simulation for visulization of linear combinations and Vector Span.
+
 '''
     This Class takes list of vectors and weights(optional), calculate and plot 'count' number of linear combinations
         ----------
