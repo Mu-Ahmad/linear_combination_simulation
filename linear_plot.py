@@ -170,6 +170,7 @@ class plotLinearCombinations:
 
 
 try:
+    print("Its Starting")
     p = plotLinearCombinations(vectors=[
         [6, 3], [-3, 5], [-4,-6], [7, -9]], weights=[2, 3, 1.9, 3.6], count=100, origin=[0, 0], pointOnly=False, printInfo=False, dynamic=False)
     p.findPlotlinearcomb()
